@@ -1,0 +1,9 @@
+#ifndef ACTIVATION_FUNCTION_H
+#define ACTIVATION_FUNCTION_H
+
+
+
+
+
+
+#endif // !ACTIVATION_FUNCTION_H
