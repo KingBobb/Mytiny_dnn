@@ -67,9 +67,25 @@ namespace mytiny_dnn
 			}
 		}
 
-		//std::set<labe>
+		std::set<label_t> labels()const{
+			std::set<label_t>all_labels;
+			for (auto r : confusion_matrix)
+			{
+				all_labels.insert(r.first);
+				for (auto c : r.second)
+					all_labels.insert(c.first);
+			}
+			return all_labels;
+		}
+		std::map<label_t, std::map<label_t, int>>confusion_matrix;
 		
 	};
+
+	enum grad_check_mode{
+		GRAD_CHECK_ALL,    ///< check all elements of weights
+		GRAD_CHEVK_RANDOM  ///< check 10 randomly selected weights
+	};
+	
 
 }
 #endif // !NETWORK_H

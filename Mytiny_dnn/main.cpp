@@ -1,7 +1,7 @@
 
 #include<iostream>
 #include<string>
-#include"nn_error.h"
+#include"util/nn_error.h"
 using namespace mytiny_dnn;
 
 using namespace std;

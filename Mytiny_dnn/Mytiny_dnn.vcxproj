@@ -82,13 +82,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="activation_function.h" />
-    <ClInclude Include="aligned_allocator.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="loss_function.h" />
     <ClInclude Include="network.h" />
-    <ClInclude Include="nn_error.h" />
     <ClInclude Include="nodes.h" />
-    <ClInclude Include="util.h" />
+    <ClInclude Include="util\aligned_allocator.h" />
+    <ClInclude Include="util\nn_error.h" />
+    <ClInclude Include="util\util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

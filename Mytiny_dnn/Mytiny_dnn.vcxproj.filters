@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\util">
+      <UniqueIdentifier>{97200e34-3f83-495c-82f5-8ef999b66e52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -20,16 +23,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="nn_error.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="network.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="nodes.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="util.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="loss_function.h">
@@ -41,8 +38,14 @@
     <ClInclude Include="config.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="aligned_allocator.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="util\util.h">
+      <Filter>头文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\aligned_allocator.h">
+      <Filter>头文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\nn_error.h">
+      <Filter>头文件\util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
