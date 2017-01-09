@@ -86,6 +86,12 @@ namespace mytiny_dnn
 		GRAD_CHEVK_RANDOM  ///< check 10 randomly selected weights
 	};
 	
+	template<typename NetType>
+	class network;
+
+	//template<typename Layer>
+	//Î´Íê´ýÐø
+	
 
 }
 #endif // !NETWORK_H
