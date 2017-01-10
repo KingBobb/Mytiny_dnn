@@ -3,5 +3,4 @@
 
 
 
-
 #endif // !LOSS_FUNCTION_H

@@ -41,6 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\Kornblume\Desktop\Mytiny_dnn\Mytiny_dnn;$(IncludePath)</IncludePath>
+    <ReferencePath>C:\Users\Kornblume\Desktop\Mytiny_dnn\Mytiny_dnn;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -81,14 +83,20 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="activation_function.h" />
+    <ClInclude Include="activations\activation_function.h" />
     <ClInclude Include="config.h" />
-    <ClInclude Include="loss_function.h" />
+    <ClInclude Include="layers\layer.h" />
+    <ClInclude Include="lossfunctions\loss_function.h" />
     <ClInclude Include="network.h" />
+    <ClInclude Include="node.h" />
     <ClInclude Include="nodes.h" />
+    <ClInclude Include="optimizers\optimizer.h" />
     <ClInclude Include="util\aligned_allocator.h" />
+    <ClInclude Include="util\image.h" />
     <ClInclude Include="util\nn_error.h" />
+    <ClInclude Include="util\product.h" />
     <ClInclude Include="util\util.h" />
+    <ClInclude Include="util\weight_init.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

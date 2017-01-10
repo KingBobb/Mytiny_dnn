@@ -16,6 +16,9 @@
     <Filter Include="头文件\util">
       <UniqueIdentifier>{97200e34-3f83-495c-82f5-8ef999b66e52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\layers">
+      <UniqueIdentifier>{a7851bdc-71ff-45a4-98d4-bbab1520e565}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,12 +32,6 @@
     <ClInclude Include="nodes.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="loss_function.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="activation_function.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="config.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -46,6 +43,30 @@
     </ClInclude>
     <ClInclude Include="util\nn_error.h">
       <Filter>头文件\util</Filter>
+    </ClInclude>
+    <ClInclude Include="activations\activation_function.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lossfunctions\loss_function.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizers\optimizer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="layers\layer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="node.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\image.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\weight_init.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\product.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

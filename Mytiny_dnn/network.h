@@ -14,8 +14,8 @@
 
 #include"nodes.h"
 #include"util/util.h"
-#include"loss_function.h"
-#include"activation_function.h"
+#include"lossfunctions\loss_function.h"
+#include"activations\activation_function.h"
 
 
 namespace mytiny_dnn
@@ -89,8 +89,8 @@ namespace mytiny_dnn
 	template<typename NetType>
 	class network;
 
-	//template<typename Layer>
-	//Î´Íê´ýÐø
+	template<typename Layer>
+	
 	
 
 }

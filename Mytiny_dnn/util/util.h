@@ -12,9 +12,9 @@
 #include <string>
 #include <sstream>
 
-#include"config.h"
+#include"../config.h"
 
-#include"util/aligned_allocator.h"
+#include"aligned_allocator.h"
 
 
 namespace mytiny_dnn{
@@ -61,7 +61,96 @@ namespace mytiny_dnn{
 		// do nothing
 	}
 
+
+    
 	//未完待续
+	template <typename T> inline T sqr(T value){ return value*value; }
+
+	inline bool isfinite(float_t x) {
+		return x == x;
+	}
+
+	template <typename Container> 
+	inline bool has_infinite(const Container& c) {
+		for (auto v : c)
+			if (!isfinite(v)) return true;
+		return false;
+	}
+
+	template <typename Container>
+	size_t max_size(const Container& c) {
+		typedef typename Container::value_type value_t;
+		return std::max_element(c.begin(), c.end(),
+			[](const value_t& left, const value_t& right) { return left.size() < right.size(); })->size();
+	}
+
+	inline std::string format_str(const char *fmt, ...) {
+		static char buf[2048];
+
+#ifdef _MSC_VER
+#pragma warning(disable:4996)
+#endif
+		va_list args;
+		va_start(args, fmt);
+		vsnprintf(buf, sizeof(buf), fmt, args);
+		va_end(args);
+#ifdef _MSC_VER
+#pragma warning(default:4996)
+#endif
+		return std::string(buf);
+	}
+
+	/********一个三元结构体模板********/
+    template <typename T>
+	struct index3d{
+		index3d(T width, T height, T depth)
+		{
+			reshape(width, height, depth);
+		}
+
+		void reshape(T width, T height, T depth)
+		{
+			width_ = width;
+			height_ = height;
+			depth_ = depth;
+
+			if ((long long)width * height * depth > std::numeric_limits<T>::max())
+				throw nn_error(
+				format_str("error while constructing layer: layer size too large for tiny-dnn\nWidthxHeightxChannels=%dx%dx%d >= max size of [%s](=%d)",
+				width, height, depth, typeid(T).name(), std::numeric_limits<T>::max()));
+		}
+	
+		T get_index(T x, T y, T channel)const{
+			assert(x >= 0 && x < width_);
+			assert(y >= 0 && y < height_);
+			assert(channel >= 0 && channel < depth_);
+			return (height_ * channel + y) * width_ + x;
+		}
+
+		T area() const {
+			return width_ * height_;
+		}
+
+		T size() const {
+			return width_ * height_ * depth_;
+		}
+
+		template <class Archive>
+		void serialize(Archive & ar) {
+			ar(cereal::make_nvp("width", width_));
+			ar(cereal::make_nvp("height", height_));
+			ar(cereal::make_nvp("depth", depth_));
+		}
+
+		T width_;
+		T height_;
+		T depth_;
+	};
+
+	
+
+
+
 
 }
 
