@@ -147,9 +147,130 @@ namespace mytiny_dnn{
 		T depth_;
 	};
 
-	
+	typedef index3d<cnn_size_t> shape3d;
+
+	template<typename T>
+	bool operator ==(const index3d<T>& lhs, const index3d<T>& rhs){
+		return (lhs.width_ == rhs.width_) && (lhs.height_ == rhs.height_) && (lhs.depth_ == rhs.depth_);
+	}
+
+	template <typename T>
+	bool operator != (const index3d<T>& lhs, const index3d<T>& rhs) {
+		return !(lhs == rhs);
+	}
+
+	template<typename Stream,typename T>
+	Stream& operator<<(Stream& s, const std::vector<index3d<T>>& d){
+		s << "[";
+		for (cnn_size_t i = 0; i < d.size(); i++)
+		{
+			if (i) s << ",";
+			s << "[" << d[i] << "]";
+		}
+		s << "]";
+		return s;
+	}
 
 
+	// equivalent to std::to_string, which android NDK doesn't support
+	template <typename T>
+	std::string to_string(T value) {
+		std::ostringstream os;
+		os << value;
+		return os.str();
+	}
+
+
+    //Î´Íê´ýÐø
+
+	template <typename T, typename Pred, typename Sum>
+	cnn_size_t sumif(const std::vector<T>& vec, Pred p, Sum s) {
+		size_t sum = 0;
+		for (size_t i = 0; i < vec.size(); i++) {
+			if (p(i)) sum += s(vec[i]);
+		}
+		return sum;
+	}
+
+	template <typename T,typename Pred>
+	std::vector<T> filter(const std::vector<T>& vec, Pred p){
+		std::vector<T> res;
+		for (size_t i = 0; i < vec.size(); i++){
+			if (p(i)) res.push_back(vec[i]);
+		}
+		return res;
+	}
+
+	template<typename Result,typename T,typename Pred>
+	std::vector<Result> map_(const std::vector<Result>& vec, Pred p){
+		std::vector<Result> res;
+		for (auto& v : vec){
+			res.push_back(p(v));
+		}
+		return res;
+	}
+
+
+	enum class vector_type : int32_t {
+		// 0x0001XXX : in/out data
+		data = 0x0001000, // input/output data, fed by other layer or input channel
+
+		// 0x0002XXX : trainable parameters, updated for each back propagation
+		weight = 0x0002000,
+		bias = 0x0002001,
+
+		label = 0x0004000,
+		aux = 0x0010000 // layer-specific storage
+	};
+
+	inline std::string to_string(vector_type vtype){
+		switch (vtype)
+		{
+		case tiny_dnn::vector_type::data:
+			return "data";
+		case tiny_dnn::vector_type::weight:
+			return "weight";
+		case tiny_dnn::vector_type::bias:
+			return "bias";
+		case tiny_dnn::vector_type::label:
+			return "label";
+		case tiny_dnn::vector_type::aux:
+			return "aux";
+		default:
+			return "unknown";
+		}
+	}
+
+	inline std::ostream& operator << (std::ostream& os, vector_type vtype){
+		os << to_string(vtype);
+		return os;
+	}
+
+	inline vector_type operator & (vector_type lhs, vector_type rhs) {
+		return (vector_type)(static_cast<int32_t>(lhs)& static_cast<int32_t>(rhs));
+	}
+
+	inline bool is_trainable_weight(vector_type vtype){
+		return (vtype&vector_type::weight) == vector_type::weight;
+	}
+
+	inline std::vector<vector_type> std_input_order(bool has_bias) {
+		if (has_bias) {
+			return{ vector_type::data, vector_type::weight, vector_type::bias };
+		}
+		else {
+			return{ vector_type::data, vector_type::weight };
+		}
+	}
+
+	inline std::vector<vector_type> std_output_order(bool has_activation) {
+		if (has_activation) {
+			return{ vector_type::data, vector_type::aux };
+		}
+		else {
+			return{ vector_type::data };
+		}
+	}
 
 
 }

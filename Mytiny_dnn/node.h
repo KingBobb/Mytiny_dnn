@@ -35,8 +35,32 @@ namespace mytiny_dnn{
 	**/
 //	class node:public std::enabled_shared_from
 	class node :public std::enable_shared_from_this<node>{
+	public:
+		node(cnn_size_t in_size,cnn_size_t out_size)
+			:prev_(in_size), next_(out_size){}
+		virtual ~node(){}
+	protected:
+		node() = delete;
 
+		friend void connect(layerptr_t head, layerptr_t tail,
+			cnn_size_t head_index, cnn_size_t tail_index);
+
+		cnn_size_t prev_port(const edge& e)const{
+			auto it = std::find_if(prev_.begin(), prev_.end(), [&](edgeptr_t ep) { return ep.get() == &e; });
+			return (cnn_size_t)std::distance(prev_.begin(), it);
+		}
+
+		cnn_size_t next_port(const edge& e)const{
+			auto it = std::find_if(prev_.begin(), prev_.end(), [&](edgeptr_t ep) { return ep.get() == &e; });
+
+		}
+		mutable std::vector<edgeptr_t> prev_;
+		mutable std::vector<edgeptr_t> next_;	
 	};
+
+
+    
+
 
 
 	/**

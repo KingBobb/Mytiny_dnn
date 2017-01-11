@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClInclude Include="activations\activation_function.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="core\device.h" />
     <ClInclude Include="layers\layer.h" />
     <ClInclude Include="lossfunctions\loss_function.h" />
     <ClInclude Include="network.h" />
