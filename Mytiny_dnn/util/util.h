@@ -226,15 +226,15 @@ namespace mytiny_dnn{
 	inline std::string to_string(vector_type vtype){
 		switch (vtype)
 		{
-		case tiny_dnn::vector_type::data:
+		case mytiny_dnn::vector_type::data:
 			return "data";
-		case tiny_dnn::vector_type::weight:
+		case mytiny_dnn::vector_type::weight:
 			return "weight";
-		case tiny_dnn::vector_type::bias:
+		case mytiny_dnn::vector_type::bias:
 			return "bias";
-		case tiny_dnn::vector_type::label:
+		case mytiny_dnn::vector_type::label:
 			return "label";
-		case tiny_dnn::vector_type::aux:
+		case mytiny_dnn::vector_type::aux:
 			return "aux";
 		default:
 			return "unknown";
